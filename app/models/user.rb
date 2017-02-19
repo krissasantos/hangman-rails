@@ -7,8 +7,9 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates :age, numericality: { greater_than: 7 }
 
+  # belongs_to :game
   has_many :games
-  has_many :scores, through: :games
+  # has_many :scores, through: :games
 
 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170218232048) do
+ActiveRecord::Schema.define(version: 20170219000902) do
 
   create_table "games", force: :cascade do |t|
     t.integer  "user_id"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20170218232048) do
     t.string   "email"
     t.string   "password_digest"
     t.integer  "age"
+    t.integer  "set_difficulty"
+    t.integer  "set_maxLength"
   end
 
 end
