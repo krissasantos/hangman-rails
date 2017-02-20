@@ -3,7 +3,13 @@
 <br>
 
 <% blanks = "___ " * @game.word.length %>
+
+<% @alphabet.each_with_index do |letter, idx| %>
+<button> <%= letter  %></button>
+<% end %>
+
 <center><h1><%= blanks %></h1></center>
+
 
 <center>
 <button id = "a"> A </button>
@@ -34,6 +40,9 @@
 <button id = "z"> Z </button>
 </center>
 
+
+
+ 
 
 <h2>incorrect guesses:</h2>
 

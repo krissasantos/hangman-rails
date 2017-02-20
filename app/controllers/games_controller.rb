@@ -25,6 +25,9 @@ class GamesController < ApplicationController
   end
 
   def show
+    @incorrect_guesses = []
+    @correct_guesses = []
+    @alphabet = ("A".."Z").to_a
     @game = Game.find(params[:id]) #or game_params ?
   end
     

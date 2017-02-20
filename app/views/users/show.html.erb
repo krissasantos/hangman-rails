@@ -1,6 +1,8 @@
 
+Welcome, <%=@user.name%>!
 
-<%= link_to 'New Game',new_game_path %>
-<%= link_to 'Settings',edit_user_path(@user) %>
+<button><%= link_to 'New Game',new_game_path %></button>
+<button><%= link_to 'Settings',edit_user_path(@user) %></button>
 
 Scores:
+
