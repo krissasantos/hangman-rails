@@ -1,3 +1,16 @@
 <%= link_to 'Home', user_path(@user) %>
+This is where the game happens, upon "start" but really it's a form
 
-This is where the game happens!
+
+
+<h3>Game Settings</h3>
+
+<%= form_for(@game) do |f| %>
+  <label>Difficulty</label><br>
+   <%= f.select :difficulty, [[1],[2],[3],[4],[5],[6],[7],[8],[9],[10]] %><br>
+
+  <label>Maximum length of the word</label><br>
+   <%= f.select :maxLength, [[1],[2],[3],[4],[5],[6],[7],[8],[9],[10]] %><br>
+
+  <%= f.submit 'Start' %>
+<% end %>
