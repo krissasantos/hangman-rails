@@ -19,8 +19,9 @@ class GamesController < ApplicationController
     # @alphabet = ("A".."Z").to_a #make this a method of game. so game.alphabet
 
     @user = current_user
-    sample_word = DictionaryAdapter.get_word(params[:difficulty],params[:maxLength])
-    @game = Game.new(user_id: @user.id, difficulty: game_params[:difficulty], maxLength: game_params[:maxLength], word: sample_word)
+    sample_word = DictionaryAdapter.get_word(params['game']['difficulty'].to_i,params['game']['maxLength'].to_i)
+    byebug
+    @game = Game.new(user_id: @user.id, difficulty: params['game']['difficulty'].to_i, maxLength: params['game']['maxLength'].to_i, word: sample_word)
  
 
     if @game.save
@@ -61,9 +62,9 @@ class GamesController < ApplicationController
   end
 
 
-  def game_params
-    params.require(:game).permit(:difficulty, :maxLength)
-  end
+  # def game_params
+  #   params.require(:game).permit(:difficulty, :maxLength)
+  # end
 
   def set_current_game(game)
     @current_game = game

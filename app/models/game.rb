@@ -1,20 +1,27 @@
 class Game < ApplicationRecord
   belongs_to :user
-  # attr_accessor :selected_word
   # attr_accessor :selected_letters
+
+
+
+
+
+  # def initialize(user_id, difficulty, maxLength, word)
+  
+  #   @user_id = user_id
+  #   @difficulty = difficulty
+  #   @maxLength =  maxLength
+  #   @word = word
+
+  #   @@selected_letters = []
+  #   @@misses = []
+  #   @@guesses = []
+  # end
   @@selected_letters = []
   @@misses = []
   @@guesses = []
 
-
-
-  MAX_MISSES = 6
-
-  def initialize
-  @@selected_letters = []
-  @@misses = []
-  @@guesses = []
-  end
+    MAX_MISSES = 6
 
   def selected_letters
     @@selected_letters

@@ -3,14 +3,18 @@ This is where the game happens, upon "start" but really it's a form
 
 
 
-<h3>Game Settings</h3>
+  <%= form_tag('/games', :method=>'post')do %>
 
-<%= form_for(@game) do |f| %>
-  <label>Difficulty</label><br>
-   <%= f.select :difficulty, [[1],[2],[3],[4],[5],[6],[7],[8],[9],[10]] %><br>
+ 
 
-  <label>Maximum length of the word</label><br>
-   <%= f.select :maxLength, [[1],[2],[3],[4],[5],[6],[7],[8],[9],[10]] %><br>
+    <label>Difficulty</label>
+     
+    <%= select_tag('game[difficulty]', options_for_select([['1', 1], ['2', 2],['3', 3], ['4', 4],['5', 5], ['6', 6]]))%>
 
-  <%= f.submit 'Start' %>
-<% end %>
+    <%= select_tag('game[maxLength]', options_for_select([['3', 3], ['4', 4],['5', 5], ['6', 6]]))%>
+
+    <%= submit_tag "Start" %>
+  <% end %>
+
+
+
