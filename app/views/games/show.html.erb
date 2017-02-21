@@ -9,17 +9,35 @@
     <%= @game.misses %>
 
     Strikes:
-    <%= @game.misses.size %>
+    <%= @game.misses.size %> <br>
 
-
+<h1>
 
     <% @game.word.split("").map do |char| %>
+    
     <%   if @game.selected_letters.include?(char) %> 
-    <%      char  %>
+    <%=      char = char  %>
     <%   else            %>
-    <%      "____"  %>
-        <% end %>
+    <%=      char = "____"  %>
+      <%  end %>
     <% end %>
+
+    </h1>
+
+        <div class="small-12 medium-8 columns">
+        <div class="row">
+            <div class="small-12 columns">
+                <ul class="word small-block-grid-<%= @game.word.length %>">
+                    <% @game.word.split('').each do |letter| %>
+                        <li>
+                            <div class="word-letter">
+                                <%= @game.finished? || @game.selected_letters.include?(letter) ? letter : '_' %>
+                            </div>
+                        </li>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
 
 
         
@@ -63,12 +81,7 @@
 
 
 
-<div>
-  <h2>incorrect guesses: <%= @game.misses%></h2>
-  <%= @game.selected_letters.join(",") %>
 
-</div>
-<br>
 
 
 remove this later:

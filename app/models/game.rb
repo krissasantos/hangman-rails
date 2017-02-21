@@ -54,29 +54,30 @@ class Game < ApplicationRecord
 
 
 
-  # def update_blanks(letter)
-  #   if self.selected_letters == []
-  #     self.blanks
-  #   else
-  #     self.word.split("").map.with_index do |char, idx|
-  #       if char == letter.downcase
-  #         self.blanks[idx] = letter
-  #         byebug
-  #       elsif char != letter.downcase
-  #         self.blanks[idx] = "____ " 
-  #       end
-  #     end
-  #   end
+  def update_blanks(letter)
+    if self.selected_letters == []
+      self.blanks
+    else
+      self.word.split("").map.with_index do |char, idx|
+        if char == letter.downcase
+          self.blanks[idx] = letter
+       
+        elsif char != letter.downcase
+          self.blanks[idx] = "____ " 
+        end
+      end
+    end
     
-  #   self.blanks
-  # end
+    self.blanks
+  end
 
   def select!(letter)
-    # byebug
-    #cannot get passed this because selected_letters is nil!
+ 
       if !self.misses.include?(letter) && !self.word.include?(letter.downcase)
+        self.selected_letters << letter
         self.misses << letter 
       elsif !self.guesses.include?(letter) && self.word.include?(letter.downcase)
+        self.selected_letters << letter
         self.guesses << letter 
       end
 
