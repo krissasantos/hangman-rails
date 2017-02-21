@@ -1,17 +1,15 @@
 
-
-<br>
-
 <% blanks = "___ " * @game.word.length %>
-<center>
-  <div>
+
     <h1><%= blanks %></h1>
-      <% @alphabet.each_with_index do |letter, idx| %>
-      
-    <button id=<%=letter%> > <%=letter%> </button>
-      <% end %>
-  </div>
-</center>
+        
+        <% @alphabet.each_with_index do |letter, idx| %>
+          
+
+      <%= link_to letter, class:"btn btn-default", method: :patch, remote: true, params: { selected_letter: letter} %>
+        <% end %>
+                   
+
 
 
 <div>

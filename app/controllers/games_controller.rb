@@ -29,6 +29,15 @@ class GamesController < ApplicationController
     @correct_guesses = []
     @alphabet = ("A".."Z").to_a
     @game = Game.find(params[:id]) #or game_params ?
+
+
+  end
+
+  def changeLetter
+    byebug
+    # @alphabet.delete(letter)
+    # if !@game.word.include? (letter)
+    # @incorrect_guesses << @game.selected_letter
   end
     
 
@@ -36,6 +45,10 @@ class GamesController < ApplicationController
   end
 
   def update
+    byebug
+     # @alphabet.delete(letter)
+    # if !@game.word.include? (letter)
+    # @incorrect_guesses << letter
   end
 
 
