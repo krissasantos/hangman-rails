@@ -44,8 +44,9 @@
 
 
 <div>
-  <h2>incorrect guesses:</h2>
- <%= @game.selected_letters.join(",") %>
+  <h2>incorrect guesses: <%= @game.failed_attempts%></h2>
+  <%= @game.selected_letters.join(",") %>
+
 </div>
 <br>
 

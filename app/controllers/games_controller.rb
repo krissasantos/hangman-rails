@@ -56,7 +56,7 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @game.select!(params[:letter]) #select! method happens here upon submit with method patch
     update_current_game
-    redirect_to game_path(@game)
+    render :show
   end
 
 

@@ -14,10 +14,11 @@ class Game < ApplicationRecord
     self.selected_letters.select { |letter|
       !self.word.include?(letter)
     }.size
+
   end
 
   def guessed?
-    (word.split('') - selected_letters).empty?
+    (self.word.split('') - selected_letters).empty?
   end
 
   def finished?
@@ -26,7 +27,7 @@ class Game < ApplicationRecord
 
   def select!(letter)
     # raise GameOverError if finished?
-    byebug
+    # byebug
     #cannot get passed this because selected_letters is nil!
      if !self.selected_letters.include?(letter) && !self.word.include?(letter.downcase)
         self.selected_letters << letter 
