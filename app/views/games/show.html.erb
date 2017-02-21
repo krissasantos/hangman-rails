@@ -1,7 +1,27 @@
 
-<% blanks = "___ " * @game.word.length %>
+    Selected letters:
+    <%= @game.selected_letters %>
 
-    <h1><%= blanks %></h1>
+    Right guesses:
+    <%= @game.guesses %>
+
+    Misses:
+    <%= @game.misses %>
+
+    Strikes:
+    <%= @game.misses.size %>
+
+
+
+    <% @game.word.split("").map do |char| %>
+    <%   if @game.selected_letters.include?(char) %> 
+    <%      char  %>
+    <%   else            %>
+    <%      "____"  %>
+        <% end %>
+    <% end %>
+
+
         
  
       <% if @game.finished? %>
@@ -44,7 +64,7 @@
 
 
 <div>
-  <h2>incorrect guesses: <%= @game.failed_attempts%></h2>
+  <h2>incorrect guesses: <%= @game.misses%></h2>
   <%= @game.selected_letters.join(",") %>
 
 </div>
