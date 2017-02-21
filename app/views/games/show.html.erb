@@ -3,10 +3,26 @@
 
     <h1><%= blanks %></h1>
         
-        <% @alphabet.each_with_index do |letter, idx| %>
-          
+ 
 
-      <%= link_to letter, class:"btn btn-default", method: :patch, remote: true, params: { selected_letter: letter} %>
+
+         <%= form_for :game, :url => game_path, :method => :patch do |form| %>
+            <div class="row">
+                <div class="letters">
+                    <% ('A'..'Z').each do |letter| %>
+                    
+                      <%  button_class = 'success'%>
+
+
+
+                        <div class="small-2 medium-2 columns text-center">
+                            <div class="letter">
+                                <%= form.submit letter, :name => 'letter', :class => "button expand #{button_class}" %>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
         <% end %>
                    
 
@@ -14,7 +30,7 @@
 
 <div>
   <h2>incorrect guesses:</h2>
-  <% @incorrect_guesses.join(",")%>
+ game.incorrect_guesses.join(",")
 </div>
 <br>
 

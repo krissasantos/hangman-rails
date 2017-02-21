@@ -2,21 +2,29 @@ require_relative '../adapters/dictionary_adapter.rb'
 require 'byebug'
 
 class GamesController < ApplicationController
+   
+  helper_method :current_game
+
   def index
     # render :show
   end
   def new
+    
     @game = Game.new
+    set_current_game(@game)
     @user = current_user
   end
 
-  def create
-    
+  def create     
+    # @alphabet = ("A".."Z").to_a #make this a method of game. so game.alphabet
+
     @user = current_user
     sample_word = DictionaryAdapter.get_word(params[:difficulty],params[:maxLength])
-    byebug
     @game = Game.new(user_id: @user.id, difficulty: game_params[:difficulty], maxLength: game_params[:maxLength], word: sample_word)
+ 
+
     if @game.save
+    
       redirect_to game_path(@game)
     else
       render :new
@@ -25,34 +33,42 @@ class GamesController < ApplicationController
   end
 
   def show
-    @incorrect_guesses = []
-    @correct_guesses = []
-    @alphabet = ("A".."Z").to_a
+    @alphabet = ("A".."Z").to_a #this is what's giving the view an aplhabet to iterate
+    # @incorrect_guesses << params["selected_letter"] #also make this a method for game. @game.incorrect_guesses << params["selected_letter"]?
+                            #@game.alphabet.delete(params["selected_letter"])
+    # @correct_guesses = []
     @game = Game.find(params[:id]) #or game_params ?
 
+    # @game.alphabet.delete(params["selected_letter"])
+    # @alphabet.delete(params["selected_letter"])
+    # render :game_path
 
   end
 
-  def changeLetter
-    byebug
-    # @alphabet.delete(letter)
-    # if !@game.word.include? (letter)
-    # @incorrect_guesses << @game.selected_letter
-  end
+
     
 
   def edit
-  end
+  end 
 
   def update
-    byebug
-     # @alphabet.delete(letter)
-    # if !@game.word.include? (letter)
-    # @incorrect_guesses << letter
+
+    @game = Game.find(params[:id])
+    @game.select!(params[:letter]) #select! method happens here upon submit with method patch
+    update_current_game
+    redirect_to game_path(@game)
   end
 
 
   def game_params
     params.require(:game).permit(:difficulty, :maxLength)
+  end
+
+  def set_current_game(game)
+    @current_game = game
+  end
+
+  def update_current_game
+    set_current_game(@current_game)
   end
 end
