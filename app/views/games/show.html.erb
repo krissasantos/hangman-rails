@@ -11,37 +11,22 @@
     Strikes:
     <%= @game.misses.size %> <br>
 
-<h1>
 
-    <% @game.word.split("").map do |char| %>
+
     
-    <%   if @game.selected_letters.include?(char) %> 
-    <%=      char = char  %>
-    <%   else            %>
-    <%=      char = "____"  %>
-      <%  end %>
+
+<br>
+<h1>
+    <% if @game.finished? || @game.guessed? %>
+    <%= @game.word %>
+    <% else %>
+    <%=  @game.word.split("").map.with_index {|char, idx| @game.selected_letters.include?(char) ? @game.blanks[idx] = char : @game.blanks[idx] = "___  "}.join(" ") %>
     <% end %>
+</h1>
+<br>
+<br>
+<br>
 
-    </h1>
-
-<!--         <div class="small-12 medium-8 columns">
-        <div class="row">
-            <div class="small-12 columns">
-                <ul class="word small-block-grid-<%= @game.word.length %>">
-                    <% @game.word.split('').each do |letter| %>
-                        <li>
-                            <div class="word-letter">
-                                <%= @game.finished? || @game.selected_letters.include?(letter) ? letter : '_' %>
-                            </div>
-                        </li>
-                    <% end %>
-                </ul>
-            </div>
-        </div>
- -->
-
-        
- 
       <% if @game.finished? %>
             <div class="row game-status">
                 <div class="small-12 columns text-center">
@@ -63,7 +48,12 @@
                     <%
                       if @game.selected_letters.include? letter
                                 button_class = @game.word.include?(letter.downcase) ? 'success' : 'alert'
-                            end
+                        end
+
+                          # if @game.word.include?(letter.downcase) 
+                          #           idx = @game.word.index(letter.downcase)
+                          #           blanks[idx] = letter
+                          # end
 
                     %>
 

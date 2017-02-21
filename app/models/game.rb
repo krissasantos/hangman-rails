@@ -10,6 +10,12 @@ class Game < ApplicationRecord
 
   MAX_MISSES = 6
 
+  def initialize
+  @@selected_letters = []
+  @@misses = []
+  @@guesses = []
+  end
+
   def selected_letters
     @@selected_letters
   end
@@ -54,23 +60,27 @@ class Game < ApplicationRecord
 
 
 
-  def update_blanks(letter)
-    if self.selected_letters == []
-      self.blanks
-    else
-      self.word.split("").map.with_index do |char, idx|
-        if char == letter.downcase
-          self.blanks[idx] = letter
+  # def update_blanks(letter)
+  #   if self.selected_letters == []
+  #     self.blanks
+  #   else
+  #     self.word.split("").map.with_index do |char, idx|
+  #       if char == letter.downcase
+  #         self.blanks[idx] = letter
        
-        elsif char != letter.downcase
-          self.blanks[idx] = "____ " 
-        end
-      end
-    end
+  #       elsif char != letter.downcase
+  #         self.blanks[idx] = "____ " 
+  #       end
+  #     end
+  #   end
     
-    self.blanks
-  end
+  #   self.blanks
+  # end
 
+def update_blanks(letter)
+  self.word.split("").map.with_index {|char, idx| char == letter ? blanks[idx] = char : blanks[idx] = "XXXX"} .join(" ")
+
+end
   def select!(letter)
  
       if !self.misses.include?(letter) && !self.word.include?(letter.downcase)
@@ -81,7 +91,8 @@ class Game < ApplicationRecord
         self.guesses << letter 
       end
 
-    # update_blanks(letter)
+    self.update_blanks(letter.downcase)
+  
   end
 
 
@@ -107,4 +118,7 @@ end
  #            </div>
  #        </div>
  # 
+
+#working: word.split("").map.with_index {|char, idx| char == letter ? blanks[idx] = char : blanks[idx] = "XXXX"} .join(" ")
+#blanks formula purely for view      <!-- # <% blanks "___ " *@game.word.size %> -->
 
