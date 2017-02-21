@@ -90,3 +90,21 @@ end
  
    # if !self.selected_letters.include?(letter) && !self.word.include?(letter.downcase)
 
+
+#last task: alter state of blanks
+ #       <div class="small-12 medium-8 columns">
+ #        <div class="row">
+ #            <div class="small-12 columns">
+ #                <ul class="word small-block-grid-<%= @game.word.length %>">
+ #                    <% @game.word.split('').each do |letter| %>
+ #                        <li>
+ #                            <div class="word-letter">
+ #                                <%= @game.finished? || @game.selected_letters.include?(letter) ? letter : '_' %>
+ #                            </div>
+ #                        </li>
+ #                    <% end %>
+ #                </ul>
+ #            </div>
+ #        </div>
+ # 
+
