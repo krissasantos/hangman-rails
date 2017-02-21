@@ -4,15 +4,30 @@
     <h1><%= blanks %></h1>
         
  
+      <% if @game.finished? %>
+            <div class="row game-status">
+                <div class="small-12 columns text-center">
+                    <% if @game.guessed? %>
+                        <span class="label success radius">You successfully guessed the word! :)</span>
+                    <% else %>
+                        <span class="label alert radius">No, no... You didn't find the word :(</span>
+                    <% end %>
+                </div>
+            </div>
+        <% end %>
+
 
 
          <%= form_for :game, :url => game_path, :method => :patch do |form| %>
             <div class="row">
                 <div class="letters">
                     <% ('A'..'Z').each do |letter| %>
-                    
-                      <%  button_class = 'success'%>
+                    <%
+                      if @game.selected_letters.include? letter
+                                button_class = @game.word.include?(letter.downcase) ? 'success' : 'alert'
+                            end
 
+                    %>
 
 
                         <div class="small-2 medium-2 columns text-center">
@@ -29,7 +44,7 @@
 
 
 <div>
-  <h2>Incorrect guesses:</h2>
+  <h2>incorrect guesses:</h2>
  <%= @game.selected_letters.join(",") %>
 </div>
 <br>
