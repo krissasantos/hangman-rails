@@ -21,7 +21,7 @@ class Game < ApplicationRecord
   
 
   def guessed?
-    guessed_letters.size == word.size 
+    guessed_letters.size == word.size || self.blanks_spaces = self.word
   end
 
   def finished?
@@ -35,30 +35,33 @@ class Game < ApplicationRecord
     blanks = self.blanks_spaces.split(" ")
     letter = letter.downcase
 
-    word.split("").map.with_index do |char, idx| 
-      if char == letter 
-        blanks[idx] = char
+    if letter.size > 1 #for whole word guess
+      if letter == word 
+        self.blanks_spaces = self.word
+
+        return self.blanks_spaces
+      else 
+        self.blanks_spaces
       end
     end
+
+    word.split("").map.with_index {|char, idx| blanks[idx] = char if char == letter} 
+    
     self.blanks_spaces = blanks.join(" ")
     # byebug
-
-    if finished?
-      return self.word
-    end
-
+    return self.word if finished? 
     return self.blanks_spaces
   
   end
   
   def select!(letter)
-      if !misses.include?(letter) && !word.include?(letter.downcase)
-     
-        Miss.create(miss: letter, game_id: self.id)
-      elsif !guesses.include?(letter) && word.include?(letter.downcase)
-    
-        Guess.create(guess: letter, game_id: self.id)
-      end
+     if !misses.include?(letter) && !word.include?(letter.downcase)
+  
+         Miss.create(miss: letter, game_id: self.id)
+     elsif !guesses.include?(letter) && word.include?(letter.downcase)
+        
+       Guess.create(guess: letter, game_id: self.id)
+     end
   end
 
 

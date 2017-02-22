@@ -61,9 +61,19 @@
             </div>
         <% end %>
 </div>
+
+Enter your entire guess right here:
+ 
 <br>
 <br>
 
+ 
+ 
+  <%= form_tag game_path(@game), method: "patch" do %>
+    <%= text_field_tag "letter"%>
+  
+    <%= submit_tag "Try" %>
+  <% end %>
 
 <footer style="small">
 This will not be included during real play.<br>
