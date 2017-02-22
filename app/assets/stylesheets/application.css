@@ -14,10 +14,15 @@
  *= require_self
  */
 
+ body{
+  background-color: peru;
+ }
+
  .success {
   background-color: green;
   opacity: 0.65; 
   cursor: not-allowed;
+  pointer-events: none;
 
 
 
@@ -27,6 +32,7 @@
   background-color: red;
   opacity: 0.65; 
   cursor: not-allowed;
+  pointer-events: none;
  
 
  }
@@ -35,8 +41,52 @@
   background-color: black;
   opacity: 0.65; 
   cursor: not-allowed;
+  pointer-events: none;
  
 
  }
+
+.letters{
+  display: inline-flex;
+
+}
+ .letter{
+ 
+  display: inline-table;
+
+   margin-right:1px;
+ }
+
+#board{
+  text-align: center;
+  height:150px;
+  padding: 2em;
+  background-color: royalblue;
+  position: relative;
+/*  overflow: :hidden;*/
+}
+
+.guide{
+
+  background-color: skyblue;
+  text-align: center;
+  padding: 1px;
+  float: left;
+  margin-right: 0.5em;
+  width: 23.1%;
+  height: 100%;
+
+
+
+}
+
+#alphabet{
+  text-align: center;
+  padding: 2em;
+  background-color: royalblue;
+
+}
+
+
 
 

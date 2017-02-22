@@ -2,7 +2,6 @@ class Game < ApplicationRecord
   belongs_to :user
   has_many :misses
   has_many :guesses
-  # has_many :blanks
 
 
   def missed_letters
@@ -13,13 +12,6 @@ class Game < ApplicationRecord
     guesses.map {|e| e.guess}
   end
 
-  # def blank_spaces
-
-
-  #   blanks.map {|e| e.blank}
-  # end
-
-
   def selected_letters
     missed_letters + guessed_letters
   end
@@ -29,10 +21,7 @@ class Game < ApplicationRecord
   
 
   def guessed?
-
-    # (word.split('') - selected_letters).empty?
     guessed_letters.size == word.size 
-
   end
 
   def finished?
@@ -43,25 +32,21 @@ class Game < ApplicationRecord
  
   
   def update_blanks(letter)
-
-
-
     blanks = self.blanks_spaces.split(" ")
     letter = letter.downcase
 
     word.split("").map.with_index do |char, idx| 
       if char == letter 
-        # self.blanks_spaces.split(" ")[idx] = char 
         blanks[idx] = char
       end
     end
-    # output = word.split("").map.with_index {|char, idx| self.blanks_spaces[idx] = char if char == letter  } .join(" ")
     self.blanks_spaces = blanks.join(" ")
-    byebug
+    # byebug
 
     if finished?
       return self.word
     end
+
     return self.blanks_spaces
   
   end
@@ -75,33 +60,6 @@ class Game < ApplicationRecord
         Guess.create(guess: letter, game_id: self.id)
       end
   end
-
-
-
-
-  # def blank_spaces #maybe this should be an added model ?
-  #   update_blanks(letter)
-  # end
-
-
-  # def update_blanks(letter)
-  #   if self.selected_letters == []
-  #     self.blanks
-  #   else
-  #     self.word.split("").map.with_index do |char, idx|
-  #       if char == letter.downcase
-  #         self.blanks[idx] = letter
-
-  #       elsif char != letter.downcase
-  #         self.blanks[idx] = "____ "
-  #       end
-  #     end
-  #   end
-
-  #   self.blanks
-  # end
-
-
 
 
 end

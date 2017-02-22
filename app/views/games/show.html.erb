@@ -1,63 +1,73 @@
+<%= link_to "Log out", sessions_path, method: "delete" %>
+<%= link_to 'Play Again', new_game_path %>
+<br>
 
-Good luck!
-    Selected letters:
-    <%= @game.selected_letters %>
-
-    Right guesses:
-    <%= @game.guessed_letters %>
-
-    Misses:
-    <%= @game.missed_letters %>
-
-    Strikes:
-    <%= @game.misses.size %> <br>
-
-
-<%= @game.blanks_spaces %>
-
+<h1><%= @game.blanks_spaces %></h1>
       <% if @game.finished? %>
             <div class="row game-status">
                 <div class="small-12 columns text-center">
                     <% if @game.guessed? %>
-                        <span>You successfully guessed the word! :)</span>
+                        <span><h3><i>You Win!</i></h3></span>
                     <% else %>
-                        <span>No, no... You didn't find the word :(</span>
+                        <span><h3><i>You Lose!</i></h3></span>
                     <% end %>
                 </div>
             </div>
         <% end %>
 
+  <div id="board">
+      <div class="guide">
+        <h4>Selected letters:</h4>
+        <%= @game.selected_letters.join("    ") %>
+      </div>
+     
+     <div class="guide">
+        <h4>Right guesses:</h4>
+        <%= @game.guessed_letters.join("    ") %> 
+      </div>
+     
+      <div class="guide">
+        <h4>Misses:</h4>
+        <%= @game.missed_letters.join("    ") %>
+      </div>
 
+      <div class="guide">
+        <h4>Strikes:</h4><%= @game.misses.size %>
+      </div>
+  </div>
+<br>
 
+<div id="alphabet">
          <%= form_for :game, :url => game_path, :method => :patch do |form| %>
             <div class="row">
                 <div class="letters">
                     <% ('A'..'Z').each do |letter| %>
-                    <%
-                    if @game.finished?
-                        button_class = 'disable'
-                      elsif @game.selected_letters.include? letter
-                                button_class = @game.word.include?(letter.downcase) ? 'success' : 'alert'
-                        end
-
-                    %>
-
-
-                        <div class="small-2 medium-2 columns text-center">
+                        <%
+                            if @game.finished?
+                                button_class = 'disable'
+                            elsif @game.selected_letters.include? letter
+                                        button_class = @game.word.include?(letter.downcase) ? 'success' : 'alert'
+                            end
+                        %>
+                        <br>
+                        <div class>
                             <div class="letter">
                                 <%= form.submit letter, :name => 'letter', :class => "button expand #{button_class}" %>
                             </div>
                         </div>
                     <% end %>
+                  
                 </div>
             </div>
         <% end %>
+</div>
+<br>
+<br>
 
 
+<footer style="small">
+This will not be included during real play.<br>
+For reference only<br>
+Word to be guessed: <i><%= @game.word %></i></footer>
 
 
-
-
-
-remove this later:
-<h2><%= @game.word %></h2>
