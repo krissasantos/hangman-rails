@@ -29,22 +29,24 @@ class Game < ApplicationRecord
   
 
   def guessed?
-    (word.split('') - selected_letters).empty?
+
+    # (word.split('') - selected_letters).empty?
+    guessed_letters.size == word.size 
+
   end
 
   def finished?
-    misses.size >= MAX_MISSES || guessed?
+    missed_letters.size >= MAX_MISSES || guessed?
   end
 
 
-  # def blanks
-  #    "____ " * word.size
-
-  # end
+ 
   
   def update_blanks(letter)
-    blanks = self.blanks_spaces.split(" ")
 
+
+
+    blanks = self.blanks_spaces.split(" ")
     letter = letter.downcase
 
     word.split("").map.with_index do |char, idx| 
@@ -56,6 +58,10 @@ class Game < ApplicationRecord
     # output = word.split("").map.with_index {|char, idx| self.blanks_spaces[idx] = char if char == letter  } .join(" ")
     self.blanks_spaces = blanks.join(" ")
     byebug
+
+    if finished?
+      return self.word
+    end
     return self.blanks_spaces
   
   end

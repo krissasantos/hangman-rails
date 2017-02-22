@@ -13,18 +13,15 @@ Good luck!
     <%= @game.misses.size %> <br>
 
 
-
-
-
 <%= @game.blanks_spaces %>
 
       <% if @game.finished? %>
             <div class="row game-status">
                 <div class="small-12 columns text-center">
                     <% if @game.guessed? %>
-                        <span class="label success radius">You successfully guessed the word! :)</span>
+                        <span>You successfully guessed the word! :)</span>
                     <% else %>
-                        <span class="label alert radius">No, no... You didn't find the word :(</span>
+                        <span>No, no... You didn't find the word :(</span>
                     <% end %>
                 </div>
             </div>
@@ -37,14 +34,11 @@ Good luck!
                 <div class="letters">
                     <% ('A'..'Z').each do |letter| %>
                     <%
-                      if @game.selected_letters.include? letter
+                    if @game.finished?
+                        button_class = 'disable'
+                      elsif @game.selected_letters.include? letter
                                 button_class = @game.word.include?(letter.downcase) ? 'success' : 'alert'
                         end
-
-                          # if @game.word.include?(letter.downcase)
-                          #           idx = @game.word.index(letter.downcase)
-                          #           blanks[idx] = letter
-                          # end
 
                     %>
 

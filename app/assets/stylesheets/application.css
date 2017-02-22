@@ -31,3 +31,12 @@
 
  }
 
+ .disable {
+  background-color: black;
+  opacity: 0.65; 
+  cursor: not-allowed;
+ 
+
+ }
+
+
