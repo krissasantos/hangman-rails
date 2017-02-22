@@ -21,11 +21,15 @@ class Game < ApplicationRecord
   
 
   def guessed?
-    guessed_letters.size == word.size || self.blanks_spaces == self.word
+    guessed_letters.size == word.size 
+  end
+
+  def guessed_word?
+    self.blanks_spaces == self.word
   end
 
   def finished?
-    missed_letters.size >= MAX_MISSES || guessed?
+    missed_letters.size >= MAX_MISSES || guessed? 
   end
 
 

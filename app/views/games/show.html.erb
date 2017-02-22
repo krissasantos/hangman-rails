@@ -4,15 +4,19 @@
 
 <center><h1><%= @game.blanks_spaces %></h1></center>
       <% if @game.finished? %>
+
             <div class="row game-status">
                 <div class="small-12 columns text-center">
-                    <% if @game.guessed? %>
+                    <% if @game.guessed?  %>
                         <span><h3><i>You Win!</i></h3></span>
+
                     <% else %>
                         <span><h3><i>You Lose!</i></h3></span>
                     <% end %>
                 </div>
             </div>
+         <% elsif @game.guessed_word? %>
+          <span><h3><i>You Win!</i></h3></span>
         <% end %>
 
   <div id="board">
