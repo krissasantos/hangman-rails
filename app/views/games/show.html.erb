@@ -42,28 +42,28 @@
 <br>
 
 <div id="alphabet">
-         <%= form_for :game, :url => game_path, :method => :patch do |form| %>
-            <div class="row">
-                <div class="letters">
-                    <% ('A'..'Z').each do |letter| %>
-                        <%
-                            if @game.finished?
-                                button_class = 'disable'
-                            elsif @game.selected_letters.include? letter
-                                        button_class = @game.word.include?(letter.downcase) ? 'success' : 'alert'
-                            end
-                        %>
-                        <br>
-                        <div class>
-                            <div class="letter">
-                                <%= form.submit letter, :name => 'letter', :class => "button expand #{button_class}" %>
-                            </div>
-                        </div>
-                    <% end %>
+    <%= form_for :game, :url => game_path, :method => :patch do |form| %>
+       <div class="row">
+          <div class="letters">
+              <% ('A'..'Z').each do |letter| %>
+                  <%
+                        if @game.finished?
+                            button_class = 'disable'
+                        elsif @game.selected_letters.include? letter
+                              button_class = @game.word.include?(letter.downcase) ? 'success' : 'alert'
+                        end
+                    %>
+                    <br>
+                    <div class>
+                       <div class="letter">
+                          <%= form.submit letter, :name => 'letter', :class => "button expand #{button_class}" %>
+                       </div>
+                    </div>
+                <% end %>
                   
-                </div>
             </div>
-        <% end %>
+        </div>
+    <% end %>
 </div>
 
 Enter your entire guess right here:
