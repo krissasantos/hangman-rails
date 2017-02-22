@@ -45,7 +45,8 @@ class GamesController < ApplicationController
   def update
     @game = Game.find(params[:id])
     @game.select!(params[:letter]) #select! method happens here upon submit with method patch
-    @game.blanks_spaces = @game.update_blanks(params[:letter])
+    @game.update_blanks(params[:letter])
+    @game.update_attribute(:blanks_spaces, @game.update_blanks(params[:letter]))
     byebug
     render :show
   end

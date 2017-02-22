@@ -43,11 +43,20 @@ class Game < ApplicationRecord
   # end
   
   def update_blanks(letter)
-   
+    blanks = self.blanks_spaces.split(" ")
+
     letter = letter.downcase
-    output = word.split("").map.with_index {|char, idx| char == letter ? self.blanks_spaces[idx] = char : self.blanks_spaces[idx] = self.blanks_spaces[idx]} .join(" ")
+
+    word.split("").map.with_index do |char, idx| 
+      if char == letter 
+        # self.blanks_spaces.split(" ")[idx] = char 
+        blanks[idx] = char
+      end
+    end
+    # output = word.split("").map.with_index {|char, idx| self.blanks_spaces[idx] = char if char == letter  } .join(" ")
+    self.blanks_spaces = blanks.join(" ")
     byebug
-    return output
+    return self.blanks_spaces
   
   end
   
