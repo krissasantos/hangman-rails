@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170219040352) do
+ActiveRecord::Schema.define(version: 20170222023131) do
 
   create_table "games", force: :cascade do |t|
     t.integer  "user_id"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 20170219040352) do
     t.integer  "difficulty"
     t.integer  "maxLength"
     t.string   "word"
+  end
+
+  create_table "guesses", force: :cascade do |t|
+    t.string  "guess"
+    t.integer "game_id"
+  end
+
+  create_table "misses", force: :cascade do |t|
+    t.string  "miss"
+    t.integer "game_id"
   end
 
   create_table "users", force: :cascade do |t|

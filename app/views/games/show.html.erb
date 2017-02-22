@@ -4,17 +4,17 @@ Good luck!
     <%= @game.selected_letters %>
 
     Right guesses:
-    <%= @game.guesses %>
+    <%= @game.guessed_letters %>
 
     Misses:
-    <%= @game.misses %>
+    <%= @game.missed_letters %>
 
     Strikes:
     <%= @game.misses.size %> <br>
 
 
 
-    
+
 
 <br>
 <h1>
@@ -51,7 +51,7 @@ Good luck!
                                 button_class = @game.word.include?(letter.downcase) ? 'success' : 'alert'
                         end
 
-                          # if @game.word.include?(letter.downcase) 
+                          # if @game.word.include?(letter.downcase)
                           #           idx = @game.word.index(letter.downcase)
                           #           blanks[idx] = letter
                           # end
@@ -68,7 +68,7 @@ Good luck!
                 </div>
             </div>
         <% end %>
-                   
+
 
 
 
