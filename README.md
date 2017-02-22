@@ -1,15 +1,5 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-
 Hangman
 A game of hangman which can be played by a user "against" the computer. Hangman is a game where the  secret-keeper  (in this case, the computer) thinks of a word, and the  guesser  (the user) tries to guess it one letter at a time. The g  uesser  has six guesses. If the guesser  guesses a letter which is part of the word, the s  ecret-keeper  will reveal all occurrences of that letter in the word. If the  guesser  guesses a correct letter such that all letters are now revealed, the game is over and player 2 has won. Instead if player 2 runs out of guesses before the whole word is discovered, the game is over and player 1 has won. Check out  https://en.wikipedia.org/wiki/Hangman_(game)  for more details.
 
