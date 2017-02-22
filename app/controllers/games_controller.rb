@@ -17,12 +17,11 @@ class GamesController < ApplicationController
 
   def create     
     # @alphabet = ("A".."Z").to_a #make this a method of game. so game.alphabet
-
+  
     @user = current_user
     sample_word = DictionaryAdapter.get_word(params['game']['difficulty'].to_i,params['game']['maxLength'].to_i)
-    byebug
     @game = Game.new(user_id: @user.id, difficulty: params['game']['difficulty'].to_i, maxLength: params['game']['maxLength'].to_i, word: sample_word)
- 
+    byebug
 
     if @game.save
     
@@ -56,7 +55,7 @@ class GamesController < ApplicationController
 
     @game = Game.find(params[:id])
     @game.select!(params[:letter]) #select! method happens here upon submit with method patch
-    update_current_game
+    # update_current_game
     @game.update_blanks(params[:letter])
     render :show
   end
@@ -66,11 +65,11 @@ class GamesController < ApplicationController
   #   params.require(:game).permit(:difficulty, :maxLength)
   # end
 
-  def set_current_game(game)
-    @current_game = game
-  end
+  # def set_current_game(game)
+  #   @current_game = game
+  # end
 
-  def update_current_game
-    set_current_game(@current_game)
-  end
+  # def update_current_game
+  #   set_current_game(@current_game)
+  # end
 end
