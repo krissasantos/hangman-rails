@@ -16,7 +16,8 @@
 
  .success {
   background-color: green;
-    opacity: 0.65; 
+  opacity: 0.65; 
+  cursor: not-allowed;
 
 
 
@@ -24,7 +25,8 @@
 
  .alert {
   background-color: red;
-    opacity: 0.65; 
+  opacity: 0.65; 
+  cursor: not-allowed;
  
 
  }
