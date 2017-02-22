@@ -21,7 +21,7 @@ class Game < ApplicationRecord
   
 
   def guessed?
-    guessed_letters.size == word.size || self.blanks_spaces = self.word
+    guessed_letters.size == word.size || self.blanks_spaces == self.word
   end
 
   def finished?

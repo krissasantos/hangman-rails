@@ -39,11 +39,13 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
 
     if params[:letter].size == 1
+
       @game.select!(params[:letter]) 
     elsif params[:letter].size > 1
+      
       @game.update_blanks(params[:letter])
     end      
-      byebug #select! method happens here upon submit with method patch
+    #byebug #select! method happens here upon submit with method patch
 
     @game.update_blanks(params[:letter])
     @game.update_attribute(:blanks_spaces, @game.update_blanks(params[:letter]))

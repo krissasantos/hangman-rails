@@ -13,10 +13,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      # @user.game = Game.create(user_id: @user.id)
-      # @game = Game.create(user_id: @user.id)
-
-
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
@@ -26,11 +22,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # @game = @user.game
   end
 
   def edit
-    # @post = Post.new @game?
+ 
     @user = User.find(params[:id])
     @user.set_difficulty = params[:difficulty].to_i
     @user.set_maxLength = params[:maxLength].to_i
