@@ -16,17 +16,7 @@ Good luck!
 
 
 
-<br>
-<h1>
-    <% if @game.finished? || @game.guessed? %>
-    <%= @game.word %>
-    <% else %>
-    <%=  @game.word.split("").map.with_index {|char, idx| @game.selected_letters.include?(char) ? @game.blanks[idx] = char : @game.blanks[idx] = "___  "}.join(" ") %>
-    <% end %>
-</h1>
-<br>
-<br>
-<br>
+<%= @game.blanks_spaces %>
 
       <% if @game.finished? %>
             <div class="row game-status">
